@@ -7,7 +7,7 @@ set -euo pipefail
 : ${PREFIX:=~/local}        # the path to install deepdive
 : ${GITCLONE:=deepdive}     # the path to clone deepdive's repo
 
-: ${GITHUB_BASEURL:=https://github.com/HazyResearch/deepdive}
+: ${GITHUB_BASEURL:=https://github.com/liiigo/deepdive}
 : ${INSTALLER_BRANCH:=master}   # the branch from which the installer scripts should be downloaded
 INSTALLER_HOME_URL="$GITHUB_BASEURL"/raw/"$INSTALLER_BRANCH"/util/install
 INSTALLER_HOME_DIR=$(dirname "$0")/install
@@ -53,7 +53,7 @@ ${INSTALLER_REMOTE_EXEC:-false} ||
 download() {
     local url=$1
     local file=${2:-$(basename "$1")}
-    file=$(python -c 'import urllib,sys;print urllib.unquote(sys.argv[1])' "$file")
+    file=$(python -c 'import urllib,sys;print(urllib.unquote(sys.argv[1]))' "$file")
     if [[ -e "$file" ]]; then
         echo "# File exists, skipping download from $url"
     else
